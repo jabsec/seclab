@@ -34,7 +34,7 @@
     name: caddy
     enabled: true
     state: restarted
-  when: mode == 'reverse_proxy'
+  when: caddy_mode == 'reverse_proxy'
 - name: Add web content
   ansible.builtin.template:
     src: index.html.j2 
@@ -42,7 +42,7 @@
     owner: caddy
     group: caddy
     mode: 0644
-  when: "mode == 'normal'"
+  when: "caddy_mode == 'normal'"
   notify: 
     - Restart/Enable Caddy
 - name: Convert to PHP
